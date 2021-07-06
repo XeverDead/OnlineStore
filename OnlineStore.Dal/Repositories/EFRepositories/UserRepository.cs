@@ -19,10 +19,10 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
 
         public async Task<User> Create(User user)
         {
-            var addedUerEntry = _dbContext.Users.Add(user);
+            var addedUserEntry = _dbContext.Users.Add(user);
             await _dbContext.SaveChangesAsync();
 
-            return addedUerEntry.Entity;
+            return addedUserEntry.Entity;
         }
 
         public async Task Delete(int id)
@@ -42,7 +42,8 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
 
         public async Task<User> GetById(int id)
         {
-            var user = await _dbContext.Users.AsNoTracking()
+            var user = await _dbContext.Users
+                .AsNoTracking()
                 .FirstOrDefaultAsync(user => user.Id == id);
 
             return user;
@@ -50,8 +51,6 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
 
         public async Task<User> Update(User user)
         {
-            var userToUpdate = await GetById(user.Id);
-
             var userEntry = _dbContext.Users.Update(user);
             await _dbContext.SaveChangesAsync();
 

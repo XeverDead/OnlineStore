@@ -42,7 +42,8 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
 
         public async Task<Order> GetById(int id)
         {
-            var order = await _dbContext.Orders.AsNoTracking()
+            var order = await _dbContext.Orders
+                .AsNoTracking()
                 .FirstOrDefaultAsync(order => order.Id == id);
 
             return order;
@@ -50,8 +51,6 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
 
         public async Task<Order> Update(Order order)
         {
-            var orderToUpdate = await GetById(order.Id);
-
             var orderEntry = _dbContext.Orders.Update(order);
             await _dbContext.SaveChangesAsync();
 

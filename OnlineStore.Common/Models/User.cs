@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using OnlineStore.Common.Models.SubModels;
+using System.Collections.Generic;
 
 namespace OnlineStore.Common.Models
 {
@@ -10,8 +11,8 @@ namespace OnlineStore.Common.Models
 
         public string LastName { get; set; }
 
-        public List<string> PhoneNumbers { get; set; }
+        public List<PhoneNumberModel> PhoneNumbers { get; set; }
 
-        public List<string> Emails { get; set; }
+        public List<EmailModel> Emails { get; set; }
     }
 }

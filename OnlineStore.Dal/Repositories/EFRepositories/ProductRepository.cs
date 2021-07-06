@@ -42,7 +42,8 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
 
         public async Task<Product> GetById(int id)
         {
-            var product = await _dbContext.Products.AsNoTracking()
+            var product = await _dbContext.Products
+                .AsNoTracking()
                 .FirstOrDefaultAsync(product => product.Id == id);
 
             return product;

@@ -1,4 +1,6 @@
-﻿namespace OnlineStore.Common.Models
+﻿using System.Collections.Generic;
+
+namespace OnlineStore.Common.Models
 {
     public class Product
     {
@@ -13,5 +15,7 @@
         public string Description { get; set; }
 
         public byte[] Image { get; set; }
+
+        public List<Order> Orders { get; set; }
     }
 }
