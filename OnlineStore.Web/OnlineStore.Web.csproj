@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\OnlineStore.Bll\OnlineStore.Bll.csproj" />
     <ProjectReference Include="..\OnlineStore.Common\OnlineStore.Common.csproj" />
   </ItemGroup>

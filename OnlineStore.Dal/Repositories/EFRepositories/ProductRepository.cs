@@ -29,11 +29,6 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
         {
             var productToDelete = await GetById(id);
 
-            if (productToDelete == null)
-            {
-                throw new ArgumentException($"There is no product with id = {id}", nameof(id));
-            }
-
             _dbContext.Products.Remove(productToDelete);
             await _dbContext.SaveChangesAsync();
         }
@@ -56,11 +51,6 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
         public async Task<Product> Update(Product product)
         {
             var productToUpdate = await GetById(product.Id);
-
-            if (productToUpdate == null)
-            {
-                throw new ArgumentException($"There is no product with id = {product.Id}", nameof(product));
-            }
 
             var productEntry = _dbContext.Products.Update(product);
             await _dbContext.SaveChangesAsync();

@@ -29,11 +29,6 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
         {
             var userToDelete = await GetById(id);
 
-            if (userToDelete == null)
-            {
-                throw new ArgumentException($"There is no user with id = {id}", nameof(id));
-            }
-
             _dbContext.Users.Remove(userToDelete);
             await _dbContext.SaveChangesAsync();
         }
@@ -56,11 +51,6 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
         public async Task<User> Update(User user)
         {
             var userToUpdate = await GetById(user.Id);
-
-            if (userToUpdate == null)
-            {
-                throw new ArgumentException($"There is no user with id = {user.Id}", nameof(user));
-            }
 
             var userEntry = _dbContext.Users.Update(user);
             await _dbContext.SaveChangesAsync();

@@ -29,11 +29,6 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
         {
             var orderToDelete = await GetById(id);
 
-            if (orderToDelete == null)
-            {
-                throw new ArgumentException($"There is no order with id = {id}", nameof(id));
-            }
-
             _dbContext.Orders.Remove(orderToDelete);
             await _dbContext.SaveChangesAsync();
         }
@@ -56,11 +51,6 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
         public async Task<Order> Update(Order order)
         {
             var orderToUpdate = await GetById(order.Id);
-
-            if (orderToUpdate == null)
-            {
-                throw new ArgumentException($"There is no order with id = {order.Id}", nameof(order));
-            }
 
             var orderEntry = _dbContext.Orders.Update(order);
             await _dbContext.SaveChangesAsync();
