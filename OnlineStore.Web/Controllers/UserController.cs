@@ -24,7 +24,7 @@ namespace OnlineStore.Web.Controllers
             return new ObjectResult(users);
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             var user = await _userService.GetById(id);
