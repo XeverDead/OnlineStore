@@ -1,4 +1,5 @@
 ﻿using OnlineStore.Bll.Services.Interfaces;
+using OnlineStore.Common.Enums;
 using OnlineStore.Common.Models;
 using OnlineStore.Dal.Repositories.Interfaces;
 using System.Collections.Generic;
@@ -6,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace OnlineStore.Bll.Services.DefaultServices
 {
-    public class ProductService : IService<Product>
+    public class ProductService : IProductService
     {
-        private readonly IRepository<Product> _productRepository;
+        private readonly IProductRepository _productRepository;
 
-        public ProductService(IRepository<Product> productRepository)
+        public ProductService(IProductRepository productRepository)
         {
             _productRepository = productRepository;
         }
@@ -30,9 +31,24 @@ namespace OnlineStore.Bll.Services.DefaultServices
             return await _productRepository.GetAll();
         }
 
+        public async Task<IEnumerable<Product>> GetByCategory(string category)
+        {
+            return await _productRepository.GetByCategory(category);
+        }
+
         public async Task<Product> GetById(int id)
         {
             return await _productRepository.GetById(id);
+        }
+
+        public async Task<IEnumerable<Product>> GetByName(string name)
+        {
+            return await _productRepository.GetByName(name);
+        }
+
+        public async Task<IEnumerable<Product>> GetByPrice(int price, PriceComparison comparisonType)
+        {
+            return await _productRepository.GetByPrice(price, comparisonType);
         }
 
         public async Task<Product> Update(Product product)

@@ -2,13 +2,15 @@
 using OnlineStore.Common.Models;
 using OnlineStore.Dal.Databases;
 using OnlineStore.Dal.Repositories.Interfaces;
-using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using OnlineStore.Common.Enums;
+using System;
 
 namespace OnlineStore.Dal.Repositories.EFRepositories
 {
-    public class ProductRepository : IRepository<Product>
+    public class ProductRepository : IProductRepository
     {
         private readonly StoreContext _dbContext;
 
@@ -51,12 +53,52 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
 
         public async Task<Product> Update(Product product)
         {
-            var productToUpdate = await GetById(product.Id);
-
             var productEntry = _dbContext.Products.Update(product);
             await _dbContext.SaveChangesAsync();
 
             return productEntry.Entity;
+        }
+
+        public async Task<IEnumerable<Product>> GetByCategory(string category)
+        {
+            var products = await _dbContext.Products
+                .Where(product => product.Category.Contains(category))
+                .ToListAsync();
+
+            return products;
+        }
+
+        public async Task<IEnumerable<Product>> GetByName(string name)
+        {
+            var products = await _dbContext.Products
+                .Where(product => product.Name.Contains(name))
+                .ToListAsync();
+
+            return products;
+        }
+
+        public async Task<IEnumerable<Product>> GetByPrice(int price, PriceComparison comparisonType)
+        {
+            return await Task.Run(() =>
+            {
+                var comparison = GetComparisonByType(price, comparisonType);
+
+                var products = _dbContext.Products.Where(comparison);
+
+                return products;
+            });
+        }
+
+        private Func<Product, bool> GetComparisonByType(int price, PriceComparison comparisonType)
+        {
+            Func<Product, bool> result = comparisonType switch
+            {
+                PriceComparison.GreaterOrEqual => product => product.Price >= price,
+                PriceComparison.LessOrEqual => product => product.Price <= price,
+                _ => product => product.Price == price
+            };
+
+            return result;
         }
     }
 }

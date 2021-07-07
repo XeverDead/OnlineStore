@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace OnlineStore.Bll.Services.DefaultServices
 {
-    public class OrderService : IService<Order>
+    public class OrderService : IOrderService
     {
-        private readonly IRepository<Order> _orderRepository;
+        private readonly IOrderRepository _orderRepository;
 
-        public OrderService(IRepository<Order> orderRepository)
+        public OrderService(IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
         }
@@ -33,6 +33,11 @@ namespace OnlineStore.Bll.Services.DefaultServices
         public async Task<Order> GetById(int id)
         {
             return await _orderRepository.GetById(id);
+        }
+
+        public async Task<IEnumerable<Order>> GetByUserId(int userId)
+        {
+            return await _orderRepository.GetByUserId(userId);
         }
 
         public async Task<Order> Update(Order order)

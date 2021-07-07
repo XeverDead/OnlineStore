@@ -2,13 +2,13 @@
 using OnlineStore.Common.Models;
 using OnlineStore.Dal.Databases;
 using OnlineStore.Dal.Repositories.Interfaces;
-using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OnlineStore.Dal.Repositories.EFRepositories
 {
-    public class OrderRepository : IRepository<Order>
+    public class OrderRepository : IOrderRepository
     {
         private readonly StoreContext _dbContext;
 
@@ -55,6 +55,15 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
             await _dbContext.SaveChangesAsync();
 
             return orderEntry.Entity;
+        }
+
+        public async Task<IEnumerable<Order>> GetByUserId(int userId)
+        {
+            var orders = await _dbContext.Orders
+                .Where(order => order.User.Id == userId)
+                .ToListAsync();
+
+            return orders;
         }
     }
 }

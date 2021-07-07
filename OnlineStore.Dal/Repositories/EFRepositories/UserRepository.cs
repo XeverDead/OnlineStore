@@ -2,13 +2,12 @@
 using OnlineStore.Common.Models;
 using OnlineStore.Dal.Databases;
 using OnlineStore.Dal.Repositories.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OnlineStore.Dal.Repositories.EFRepositories
 {
-    public class UserRepository : IRepository<User>
+    public class UserRepository : IUserRepository
     {
         private readonly StoreContext _dbContext;
 
