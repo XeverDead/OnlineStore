@@ -9,9 +9,9 @@ namespace OnlineStore.Web.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private readonly IService<Order> _orderService;
+        private readonly IOrderService _orderService;
 
-        public OrderController(IService<Order> orderService)
+        public OrderController(IOrderService orderService)
         {
             _orderService = orderService;
         }

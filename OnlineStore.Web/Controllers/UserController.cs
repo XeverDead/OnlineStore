@@ -9,9 +9,9 @@ namespace OnlineStore.Web.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IService<User> _userService;
+        private readonly IUserService _userService;
 
-        public UserController(IService<User> userService)
+        public UserController(IUserService userService)
         {
             _userService = userService;
         }

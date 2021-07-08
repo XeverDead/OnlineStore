@@ -9,9 +9,9 @@ namespace OnlineStore.Web.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IService<Product> _productService;
+        private readonly IProductService _productService;
 
-        public ProductController(IService<Product> productService)
+        public ProductController(IProductService productService)
         {
             _productService = productService;
         }

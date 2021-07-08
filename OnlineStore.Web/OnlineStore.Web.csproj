@@ -28,9 +28,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\app-routing.module.ts" />
+    <None Remove="ClientApp\src\app\components\search.component.ts" />
+    <None Remove="ClientApp\src\app\models\order.ts" />
+    <None Remove="ClientApp\src\app\models\product.ts" />
+    <None Remove="ClientApp\src\app\models\user.ts" />
+    <None Remove="ClientApp\src\app\services\order.service.ts" />
+    <None Remove="ClientApp\src\app\services\product.service.ts" />
+    <None Remove="ClientApp\src\app\services\user.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OnlineStore.Bll\OnlineStore.Bll.csproj" />
     <ProjectReference Include="..\OnlineStore.Common\OnlineStore.Common.csproj" />
     <ProjectReference Include="..\OnlineStore.Di\OnlineStore.Di.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\models\enums\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using OnlineStore.Bll.Services.DefaultServices;
 using OnlineStore.Bll.Services.Interfaces;
-using OnlineStore.Common.Models;
 using OnlineStore.Dal.Databases;
 using OnlineStore.Dal.Repositories.EFRepositories;
 using OnlineStore.Dal.Repositories.Interfaces;
@@ -18,13 +17,13 @@ namespace OnlineStore.Di
 
         public static void AddStoreServices(this IServiceCollection services)
         {
-            services.AddTransient<IRepository<User>, UserRepository>();
-            services.AddTransient<IRepository<Order>, OrderRepository>();
-            services.AddTransient<IRepository<Product>, ProductRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
 
-            services.AddTransient<IService<User>, UserService>();
-            services.AddTransient<IService<Order>, OrderService>();
-            services.AddTransient<IService<Product>, ProductService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IProductService, ProductService>();
         }
     }
 }
