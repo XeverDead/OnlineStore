@@ -70,5 +70,13 @@ namespace OnlineStore.Web.Controllers
 
             return Ok();
         }
+
+        [HttpGet("byUsername/{username}")]
+        public async Task<IActionResult> GetByUsername(string username)
+        {
+            var users = await _userService.GetByUsername(username);
+
+            return Ok(users);
+        }
     }
 }

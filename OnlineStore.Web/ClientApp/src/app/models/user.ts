@@ -1,5 +1,9 @@
+import { Role } from "./enums/role";
+
 export interface User {
   id: number;
+
+  username: string;
 
   firstName: string;
 
@@ -8,4 +12,6 @@ export interface User {
   phoneNumbers: string[];
 
   emails: string[];
+
+  role: Role;
 }

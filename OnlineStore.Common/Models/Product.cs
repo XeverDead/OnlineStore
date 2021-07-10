@@ -14,7 +14,7 @@ namespace OnlineStore.Common.Models
 
         public string Description { get; set; }
 
-        public byte[] Image { get; set; }
+        public string ImagePath { get; set; }
 
         public List<Order> Orders { get; set; }
     }

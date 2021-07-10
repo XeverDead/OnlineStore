@@ -62,6 +62,7 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
         public async Task<IEnumerable<Product>> GetByCategory(string category)
         {
             var products = await _dbContext.Products
+                .AsNoTracking()
                 .Where(product => product.Category.Contains(category))
                 .ToListAsync();
 
@@ -71,10 +72,36 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
         public async Task<IEnumerable<Product>> GetByName(string name)
         {
             var products = await _dbContext.Products
+                .AsNoTracking()
                 .Where(product => product.Name.Contains(name))
                 .ToListAsync();
 
             return products;
+        }
+
+        public async Task AddToCurrentOrder(int userId, Product product)
+        {
+            var notOrderedOrder = await _dbContext.Orders
+                .AsNoTracking()
+                .FirstOrDefaultAsync(order => (order.UserId == userId) 
+                && (order.State == OrderState.NotOrdered));
+
+            if (notOrderedOrder == null)
+            {
+                notOrderedOrder = new Order
+                {
+                    UserId = userId,
+                    State = OrderState.NotOrdered
+                };
+
+                notOrderedOrder = _dbContext.Orders.Add(notOrderedOrder).Entity;
+                await _dbContext.SaveChangesAsync();
+            }
+
+            notOrderedOrder.Products.Add(product);
+            _dbContext.Orders.Update(notOrderedOrder);
+
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Product>> GetByPrice(int price, PriceComparison comparisonType)
@@ -83,7 +110,9 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
             {
                 var comparison = GetComparisonByType(price, comparisonType);
 
-                var products = _dbContext.Products.Where(comparison);
+                var products = _dbContext.Products
+                .AsNoTracking()
+                .Where(comparison);
 
                 return products;
             });
@@ -93,8 +122,8 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
         {
             Func<Product, bool> result = comparisonType switch
             {
-                PriceComparison.GreaterOrEqual => product => product.Price >= price,
                 PriceComparison.LessOrEqual => product => product.Price <= price,
+                PriceComparison.GreaterOrEqual => product => product.Price >= price,
                 _ => product => product.Price == price
             };
 

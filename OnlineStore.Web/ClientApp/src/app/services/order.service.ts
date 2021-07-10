@@ -11,7 +11,7 @@ export class OrderService {
   public create(order: Order): Order {
     let createdOrder: Order;
 
-    this.http.post(this.path, order).subscribe((data: any) => createdOrder = data);
+    this.http.post<Order>(this.path, order).subscribe((data) => createdOrder = data);
 
     return createdOrder;
   }
@@ -26,13 +26,13 @@ export class OrderService {
       },
     };
 
-    this.http.delete(this.path, options);
+    this.http.delete<Order>(this.path, options);
   }
 
   public getAll(): Order[] {
     let ordres: Order[];
 
-    this.http.get(this.path).subscribe((data: any) => ordres = data);
+    this.http.get<Order[]>(this.path).subscribe((data) => ordres = data);
 
     return ordres;
   }
@@ -42,7 +42,7 @@ export class OrderService {
 
     let path: string = this.path + "/" + id;
 
-    this.http.get(path).subscribe((data: any) => order = data);
+    this.http.get<Order>(path).subscribe((data) => order = data);
 
     return order;
   }
@@ -50,8 +50,28 @@ export class OrderService {
   public update(order: Order): Order {
     let updatedOrder: Order;
 
-    this.http.put(this.path, order).subscribe((data: any) => updatedOrder = data);
+    this.http.put<Order>(this.path, order).subscribe((data) => updatedOrder = data);
 
     return updatedOrder;
+  }
+
+  public getByUserId(userId: number): Order[] {
+    let userOrders: Order[];
+
+    let path = this.path + "/byUser/" + userId;
+
+    this.http.get<Order[]>(path).subscribe((data) => userOrders = data);
+
+    return userOrders;
+  }
+
+  public getNotOrdered(): Order {
+    let notOrderedOrder: Order;
+
+    let path = this.path + 'notOrdered';
+
+    this.http.get<Order>(path).subscribe((date) => notOrderedOrder = data);
+
+    return notOrderedOrder;
   }
 }

@@ -7,5 +7,9 @@ namespace OnlineStore.Bll.Services.Interfaces
     public interface IOrderService : IService<Order>
     {
         public Task<IEnumerable<Order>> GetByUserId(int userId);
+
+        public Task<Order> GetNotOrdered(int userId);
+
+
     }
 }

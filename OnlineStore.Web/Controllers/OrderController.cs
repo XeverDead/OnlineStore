@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
 using OnlineStore.Bll.Services.Interfaces;
 using OnlineStore.Common.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OnlineStore.Web.Controllers
@@ -69,6 +71,25 @@ namespace OnlineStore.Web.Controllers
             await _orderService.Delete(id);
 
             return Ok();
+        }
+
+        [HttpGet("byUserId/{userId}")]
+        public async Task<IActionResult> GetByUserId(int userId)
+        {
+            var userOrders = await _orderService.GetByUserId(userId);
+
+            return Ok(userOrders);
+        }
+
+        [HttpGet("notOrdered")]
+        public async Task<IActionResult> GetNotOrdered()
+        {
+            //Переписать на получение из клеймсов
+            var userId = 0;
+
+            var notOrderedOrder = await _orderService.GetNotOrdered(userId);
+
+            return Ok(notOrderedOrder);
         }
     }
 }

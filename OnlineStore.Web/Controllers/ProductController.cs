@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineStore.Bll.Services.Interfaces;
+using OnlineStore.Common.Enums;
 using OnlineStore.Common.Models;
 using System.Threading.Tasks;
 
@@ -69,6 +70,39 @@ namespace OnlineStore.Web.Controllers
             await _productService.Delete(id);
 
             return Ok();
+        }
+
+        [HttpGet("byCategory/{category}")]
+        public async Task<IActionResult> GetByCategory(string category)
+        {
+            var productsOfCategory = await _productService.GetByCategory(category);
+
+            return Ok(productsOfCategory);
+        }
+
+        [HttpGet("byName/{name}")]
+        public async Task<IActionResult> GetByName(string name)
+        {
+            var productsOfName = await _productService.GetByName(name);
+
+            return Ok(productsOfName);
+        }
+
+        [HttpGet("byPrice")]
+        public async Task<IActionResult> GetByCategory([FromQuery]int price, [FromQuery]PriceComparison comparisonType)
+        {
+            var products = await _productService.GetByPrice(price, comparisonType);
+
+            return Ok(products);
+        }
+
+        [HttpPost("addToOrder")]
+        public async Task AddToCurrentUserOrder([FromBody]Product product)
+        {
+            // Заменить на получение из клеймсов
+            var userId = 0;
+
+            await _productService.AddToCurrentOrder(userId, product);
         }
     }
 }

@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.15" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.3.2">
       <PrivateAssets>all</PrivateAssets>
@@ -29,7 +30,12 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\app-routing.module.ts" />
+    <None Remove="ClientApp\src\app\components\product.component.ts" />
     <None Remove="ClientApp\src\app\components\search.component.ts" />
+    <None Remove="ClientApp\src\app\models\enums\orderState.ts" />
+    <None Remove="ClientApp\src\app\models\enums\priceComparison.ts" />
+    <None Remove="ClientApp\src\app\models\enums\role.ts" />
+    <None Remove="ClientApp\src\app\models\enums\searchType.ts" />
     <None Remove="ClientApp\src\app\models\order.ts" />
     <None Remove="ClientApp\src\app\models\product.ts" />
     <None Remove="ClientApp\src\app\models\user.ts" />
@@ -39,13 +45,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Remove="ClientApp\src\app\components\orders\orders.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\components\order\order.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\components\users\users.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\components\user\user.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OnlineStore.Bll\OnlineStore.Bll.csproj" />
     <ProjectReference Include="..\OnlineStore.Common\OnlineStore.Common.csproj" />
     <ProjectReference Include="..\OnlineStore.Di\OnlineStore.Di.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\models\enums\" />
+    <Folder Include="ClientApp\src\app\components\login\" />
+    <Folder Include="ClientApp\src\app\components\register\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

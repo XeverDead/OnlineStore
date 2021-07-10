@@ -5,6 +5,7 @@ using OnlineStore.Dal.Repositories.Interfaces;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using OnlineStore.Common.Enums;
 
 namespace OnlineStore.Dal.Repositories.EFRepositories
 {
@@ -60,10 +61,21 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
         public async Task<IEnumerable<Order>> GetByUserId(int userId)
         {
             var orders = await _dbContext.Orders
+                .AsNoTracking()
                 .Where(order => order.User.Id == userId)
                 .ToListAsync();
 
             return orders;
+        }
+
+        public async Task<Order> GetNotOrdered(int userId)
+        {
+            var notOrderedOrder = await _dbContext.Orders
+                .AsNoTracking()
+                .FirstOrDefaultAsync(order => (order.UserId == userId)
+                && (order.State == OrderState.NotOrdered));
+
+            return notOrderedOrder;
         }
     }
 }

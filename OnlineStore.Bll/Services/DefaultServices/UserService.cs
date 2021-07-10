@@ -39,5 +39,10 @@ namespace OnlineStore.Bll.Services.DefaultServices
         {
             return await _userRepository.Update(user);
         }
+
+        public async Task<IEnumerable<User>> GetByUsername(string username)
+        {
+            return await _userRepository.GetByUername(username);
+        }
     }
 }

@@ -1,3 +1,4 @@
+import { OrderState } from "./enums/orderState";
 import { Product } from "./product";
 import { User } from "./user";
 
@@ -11,4 +12,6 @@ export interface Order {
   address: string;
 
   user: User;
+
+  state: OrderState;
 }

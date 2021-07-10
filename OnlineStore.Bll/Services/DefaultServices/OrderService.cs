@@ -40,6 +40,11 @@ namespace OnlineStore.Bll.Services.DefaultServices
             return await _orderRepository.GetByUserId(userId);
         }
 
+        public async Task<Order> GetNotOrdered(int userId)
+        {
+            return await _orderRepository.GetNotOrdered(userId);
+        }
+
         public async Task<Order> Update(Order order)
         {
             return await _orderRepository.Update(order);

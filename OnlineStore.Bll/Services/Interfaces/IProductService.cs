@@ -12,5 +12,7 @@ namespace OnlineStore.Bll.Services.Interfaces
         public Task<IEnumerable<Product>> GetByName(string name);
 
         public Task<IEnumerable<Product>> GetByPrice(int price, PriceComparison comparisonType);
+
+        public Task AddToCurrentOrder(int userId, Product product);
     }
 }

@@ -3,6 +3,7 @@ using OnlineStore.Common.Models;
 using OnlineStore.Dal.Databases;
 using OnlineStore.Dal.Repositories.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace OnlineStore.Dal.Repositories.EFRepositories
@@ -54,6 +55,16 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
             await _dbContext.SaveChangesAsync();
 
             return userEntry.Entity;
+        }
+
+        public async Task<IEnumerable<User>> GetByUername(string username)
+        {
+            var users = await _dbContext.Users
+                .AsNoTracking()
+                .Where(user => user.Username.Contains(username))
+                .ToListAsync();
+
+            return users;
         }
     }
 }

@@ -11,7 +11,7 @@ export class UserService {
   public create(user: User): User {
     let createdUser: User;
 
-    this.http.post(this.path, user).subscribe((data: any) => createdUser = data);
+    this.http.post<User>(this.path, user).subscribe((data) => createdUser = data);
 
     return createdUser;
   }
@@ -26,13 +26,13 @@ export class UserService {
       },
     };
 
-    this.http.delete(this.path, options);
+    this.http.delete<User>(this.path, options);
   }
 
   public getAll(): User[] {
     let users: User[];
 
-    this.http.get(this.path).subscribe((data: any) => users = data);
+    this.http.get<User[]>(this.path).subscribe((data: any) => users = data);
 
     return users;
   }
@@ -42,7 +42,7 @@ export class UserService {
 
     let path: string = this.path + "/" + id;
 
-    this.http.get(path).subscribe((data: any) => user = data);
+    this.http.get<User>(path).subscribe((data) => user = data);
 
     return user;
   }
@@ -50,8 +50,18 @@ export class UserService {
   public update(user: User): User {
     let updatedUser: User;
 
-    this.http.put(this.path, user).subscribe((data: any) => updatedUser = data);
+    this.http.put<User>(this.path, user).subscribe((data) => updatedUser = data);
 
     return updatedUser;
+  }
+
+  public getByUsername(username: string): User[] {
+    let users: User[];
+
+    let path: string = this.path + '/byUsername/' + username;
+
+    this.http.get<User[]>(path).subscribe((data) => users = data);
+
+    return users;
   }
 }

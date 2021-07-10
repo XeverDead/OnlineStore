@@ -55,5 +55,10 @@ namespace OnlineStore.Bll.Services.DefaultServices
         {
             return await _productRepository.Update(product);
         }
+
+        public async Task AddToCurrentOrder(int userId, Product product)
+        {
+            await _productRepository.AddToCurrentOrder(userId, product);
+        }
     }
 }

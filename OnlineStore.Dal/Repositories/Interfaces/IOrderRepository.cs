@@ -7,5 +7,7 @@ namespace OnlineStore.Dal.Repositories.Interfaces
     public interface IOrderRepository : IRepository<Order>
     {
         public Task<IEnumerable<Order>> GetByUserId(int userId);
+
+        public Task<Order> GetNotOrdered(int userId);
     }
 }

@@ -1,4 +1,5 @@
-﻿using OnlineStore.Common.Models.SubModels;
+﻿using OnlineStore.Common.Enums;
+using OnlineStore.Common.Models.SubModels;
 using System.Collections.Generic;
 
 namespace OnlineStore.Common.Models
@@ -10,6 +11,10 @@ namespace OnlineStore.Common.Models
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public string Username { get; set; }
+
+        public Role Role { get; set; }
 
         public List<PhoneNumberModel> PhoneNumbers { get; set; }
 

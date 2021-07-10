@@ -1,5 +1,7 @@
-﻿using System;
+﻿using OnlineStore.Common.Enums;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineStore.Common.Models
 {
@@ -13,6 +15,11 @@ namespace OnlineStore.Common.Models
 
         public string Address { get; set; }
 
+        public int UserId { get; set; }
+
+        [ForeignKey(nameof(UserId))]
         public User User { get; set; }
+
+        public OrderState State { get; set; }
     }
 }
