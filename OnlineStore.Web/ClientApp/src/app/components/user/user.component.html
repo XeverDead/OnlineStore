@@ -29,9 +29,11 @@
   </div>
 
   <div>
-    <mat-form-field appearance="fill" *ngFor="let phoneNumber of user.phoneNumbers">
-      <input matInput [(ngModel)]="phoneNumber" />
-    </mat-form-field>
+    <div *ngFor="let phoneNumber of user.phoneNumbers">
+      <mat-form-field appearance="fill">
+        <input matInput [value]="phoneNumber" />
+      </mat-form-field>
+    </div>
   </div>
 
   <div>
@@ -39,9 +41,11 @@
   </div>
 
   <div>
-    <mat-form-field appearance="fill" *ngFor="let email of user.emails">
-      <input matInput [(ngModel)]="email" />
-    </mat-form-field>
+    <div *ngFor="let email of user.emails">
+      <mat-form-field appearance="fill">
+        <input matInput [value]="email" />
+      </mat-form-field>
+    </div>
   </div>
 
   <div>
