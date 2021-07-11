@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Role } from '../../models/enums/role';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 
@@ -11,6 +12,8 @@ import { UserService } from '../../services/user.service';
 export class UserComponent implements OnInit {
 
   public user: User;
+
+  public roleType = Role;
 
   constructor(
     private readonly userService: UserService,

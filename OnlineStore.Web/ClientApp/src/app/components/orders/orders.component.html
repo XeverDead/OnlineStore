@@ -1,0 +1,11 @@
+<div>
+  <div>
+    <h2>Orders page</h2>
+  </div>
+
+  <div>
+    <div *ngFor="let order of orders">
+      <a [routerLink]="['order/{{order.id}}']">{{order.name}}</a>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { OrderState } from '../../models/enums/orderState';
 import { Order } from '../../models/order';
 import { OrderService } from '../../services/order.service';
 
@@ -11,6 +12,8 @@ import { OrderService } from '../../services/order.service';
 export class OrderComponent implements OnInit {
 
   public order: Order;
+
+  public stateType = OrderState;
 
   constructor(
     private readonly orderService: OrderService,

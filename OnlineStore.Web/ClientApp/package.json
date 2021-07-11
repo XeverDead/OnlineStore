@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "echo Startuem && ng serve",
+    "start": "echo Start && ng serve",
     "build": "ng build",
     "build:ssr": "ng run OnlineStore.Web:server:dev",
     "test": "ng test",

@@ -5,12 +5,16 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
-import { ProductsComponent } from './components/search/products.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { ProductsComponent } from './components/products/products.component';
 import { ProductComponent } from './components/product/product.component';
 import { UsersComponent } from './components/users/users.component';
 import { UserComponent } from './components/user/user.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderComponent } from './components/order/order.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   imports: [
@@ -18,7 +22,10 @@ import { OrderComponent } from './components/order/order.component';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    MatSelectModule
+    MatSelectModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatDatepickerModule
   ],
   declarations: [
     AppComponent,
@@ -27,7 +34,8 @@ import { OrderComponent } from './components/order/order.component';
     UsersComponent,
     UserComponent,
     OrdersComponent,
-    OrderComponent
+    OrderComponent,
+    NavbarComponent
   ],
   bootstrap: [
     AppComponent

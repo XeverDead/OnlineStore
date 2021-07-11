@@ -1,0 +1,11 @@
+<div>
+  <div>
+    <h2>Users page</h2>
+  </div>
+
+  <div>
+    <div *ngFor="let user of users">
+      <a [routerLink]="['user/{{user.id}}']">{{user.username}}</a>
+    </div>
+  </div>
+</div>

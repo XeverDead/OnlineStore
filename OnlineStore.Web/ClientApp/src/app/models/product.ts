@@ -9,5 +9,5 @@ export interface Product {
 
   description: string;
 
-
+  imagePath: string;
 }

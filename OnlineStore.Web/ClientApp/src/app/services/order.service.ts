@@ -70,7 +70,7 @@ export class OrderService {
 
     let path = this.path + 'notOrdered';
 
-    this.http.get<Order>(path).subscribe((date) => notOrderedOrder = data);
+    this.http.get<Order>(path).subscribe((data) => notOrderedOrder = data);
 
     return notOrderedOrder;
   }
