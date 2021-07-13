@@ -23,18 +23,26 @@ export class ProductsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.products = this.productService.getAll();
+    this.productService.getAll().subscribe(result => {
+      this.products = result;
+    });
   }
 
   public getByName(name: string): void {
-    this.products = this.productService.getByName(name);
+    this.productService.getByName(name).subscribe(result => {
+      this.products = result;
+    });
   }
 
   public getByCategory(category: string): void {
-    this.products = this.productService.getByCategory(category);
+    this.productService.getByCategory(category).subscribe(result => {
+      this.products = result;
+    });
   }
 
   public getByPrice(price: number, priceComparison: PriceComparison): void {
-    this.products = this.productService.getByPrice(price, priceComparison);
+    this.productService.getByPrice(price, priceComparison).subscribe(result => {
+      this.products = result;
+    });
   }
 }

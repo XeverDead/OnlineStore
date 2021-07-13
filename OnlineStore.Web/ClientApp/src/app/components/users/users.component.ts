@@ -16,10 +16,14 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.users = this.userService.getAll();
+    this.userService.getAll().subscribe(result => {
+      this.users = result;
+    });
   }
 
   public getByUsername(username: string): void {
-    this.users = this.userService.getByUsername(username);
+    this.userService.getByUsername(username).subscribe(result => {
+      this.users = result;
+    });
   }
 }

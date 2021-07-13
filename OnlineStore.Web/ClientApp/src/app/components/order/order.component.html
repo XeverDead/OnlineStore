@@ -1,42 +1,49 @@
 <div>
   <h2>Order page</h2>
-  <div>
-    <mat-form-field appearance="fill">
-      <mat-label>Date</mat-label>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="order.date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </div>
 
-  <div>
-    <mat-form-field appearance="fill">
-      <mat-label>Address</mat-label>
-      <input matInput [(ngModel)]="order.address" />
-    </mat-form-field>
-  </div>
+  <div *ngIf="order">
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="order.date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
 
-  <div>
-    <mat-form-field appeearance="fill">
-      <mat-label>State</mat-label>
-      <mat-select [(ngModel)]="order.state">
-        <mat-option [value]="stateType.notOrdered">Not ordered</mat-option>
-        <mat-option [value]="stateType.ordered">Ordered</mat-option>
-        <mat-option [value]="stateType.confirmed">Confirmed</mat-option>
-        <mat-option [value]="stateType.delivered">Delivered</mat-option>
-        <mat-option [value]="stateType.paid">Paid</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <h2>{{order.state}}</h2>
-  </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Address</mat-label>
+        <input matInput [(ngModel)]="order.address" />
+      </mat-form-field>
+    </div>
 
-  <div>
-    <div *ngFor="let product of order.products">
-      <a [routerLink]="['product/{{product.id}}']">{{product.name}}</a>
+    <div>
+      <mat-form-field appeearance="fill">
+        <mat-label>State</mat-label>
+        <mat-select [(ngModel)]="order.state">
+          <mat-option [value]="stateType.notOrdered">Not ordered</mat-option>
+          <mat-option [value]="stateType.ordered">Ordered</mat-option>
+          <mat-option [value]="stateType.confirmed">Confirmed</mat-option>
+          <mat-option [value]="stateType.delivered">Delivered</mat-option>
+          <mat-option [value]="stateType.paid">Paid</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <h2>{{order.state}}</h2>
+    </div>
+
+    <div>
+      <div *ngFor="let product of order.products">
+        <a [routerLink]="['product/{{product.id}}']">{{product.name}}</a>
+      </div>
+    </div>
+
+    <div>
+      <a [routerLink]="['user/{{order.user.id}}']">{{order.user.username}}</a>
     </div>
   </div>
 
-  <div>
-    <a [routerLink]="['user/{{order.user.id}}']">{{order.user.username}}</a>
+  <div *ngIf="!order">
+    <h4>No order data was found</h4>
   </div>
 </div>

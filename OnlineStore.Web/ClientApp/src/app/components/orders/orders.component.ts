@@ -18,10 +18,14 @@ export class OrdersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.orders = this.orderService.getAll();
+    this.orderService.getAll().subscribe(result => {
+      this.orders = result;
+    });
   }
 
   public getByUserId(): void {
-    this.orders = this.orderService.getByUserId(this.userId);
+    this.orderService.getByUserId(this.userId).subscribe(result => {
+      this.orders = result;
+    });
   }
 }

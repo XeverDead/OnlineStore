@@ -23,18 +23,24 @@ export class OrderComponent implements OnInit {
   ngOnInit(): void {
     let id: number = this.url.snapshot.params.id;
 
-    this.order = this.orderService.getById(id);
+    this.orderService.getById(id).subscribe(result => {
+      this.order = result;
+    });
   }
 
   public create(): void {
-    this.order = this.orderService.create(this.order);
+    this.orderService.create(this.order).subscribe(result => {
+      this.order = result;
+    });
   }
 
   public update(): void {
-    this.order = this.orderService.update(this.order);
+    this.orderService.update(this.order).subscribe(result => {
+      this.order = result;
+    });
   }
 
   public delete(): void {
-    this.orderService.delete(this.order.id);
+    this.orderService.delete(this.order.id).subscribe();
   }
 }

@@ -3,9 +3,15 @@
     <h2>Orders page</h2>
   </div>
 
-  <div>
-    <div *ngFor="let order of orders">
-      <a [routerLink]="['order/{{order.id}}']">{{order.name}}</a>
+  <div *ngIf="orders && orders.length > 0">
+    <div>
+      <div *ngFor="let order of orders">
+        <a [routerLink]="['order/{{order.id}}']">{{order.name}}</a>
+      </div>
     </div>
+  </div>
+
+  <div *ngIf="!orders || orders.length === 0">
+    <h4>No orders were found</h4>
   </div>
 </div>

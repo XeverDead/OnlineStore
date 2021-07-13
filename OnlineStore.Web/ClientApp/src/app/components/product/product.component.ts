@@ -20,22 +20,28 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     let id: number = this.url.snapshot.params.id;
 
-    this.product = this.productService.getById(id);
+    this.productService.getById(id).subscribe(result => {
+      this.product = result;
+    });
   }
 
   public create(): void {
-    this.product = this.productService.create(this.product);
+    this.productService.create(this.product).subscribe(result => {
+      this.product = result;
+    });
   }
 
   public update(): void {
-    this.product = this.productService.update(this.product);
+    this.productService.update(this.product).subscribe(result => {
+      this.product = result;
+    })
   }
 
   public delete(): void {
-    this.productService.delete(this.product.id);
+    this.productService.delete(this.product.id).subscribe();
   }
 
   public addToCurrentUserOrder(): void {
-    this.productService.addToCurrentUserOrder(this.product);
+    this.productService.addToCurrentUserOrder(this.product).subscribe();
   }
 }

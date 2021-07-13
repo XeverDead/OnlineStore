@@ -23,18 +23,24 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     let id: number = this.url.snapshot.params.id;
 
-    this.user = this.userService.getById(id);
+    this.userService.getById(id).subscribe(result => {
+      this.user = result;
+    })
   }
 
   public create(): void {
-    this.user = this.userService.create(this.user);
+    this.userService.create(this.user).subscribe(result => {
+      this.user = result;
+    })
   }
 
   public update(): void {
-    this.user = this.userService.update(this.user);
+    this.userService.update(this.user).subscribe(result => {
+      this.user = result;
+    })
   }
 
   public delete(): void {
-    this.userService.delete(this.user.id);
+    this.userService.delete(this.user.id).subscribe();
   }
 }

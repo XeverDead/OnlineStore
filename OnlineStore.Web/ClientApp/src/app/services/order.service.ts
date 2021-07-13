@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { Order } from "../models/order";
 
 @Injectable()
@@ -8,15 +9,11 @@ export class OrderService {
 
   constructor(private readonly http: HttpClient) { }
 
-  public create(order: Order): Order {
-    let createdOrder: Order;
-
-    this.http.post<Order>(this.path, order).subscribe((data) => createdOrder = data);
-
-    return createdOrder;
+  public create(order: Order): Observable<Order> {
+    return this.http.post<Order>(this.path, order);
   }
 
-  public delete(id: number): void {
+  public delete(id: number): Observable<void> {
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -26,52 +23,32 @@ export class OrderService {
       },
     };
 
-    this.http.delete<Order>(this.path, options);
+    return this.http.delete<void>(this.path, options);
   }
 
-  public getAll(): Order[] {
-    let ordres: Order[];
-
-    this.http.get<Order[]>(this.path).subscribe((data) => ordres = data);
-
-    return ordres;
+  public getAll(): Observable<Order[]> {
+    return this.http.get<Order[]>(this.path);
   }
 
-  public getById(id: number): Order {
-    let order: Order;
-
+  public getById(id: number): Observable<Order> {
     let path: string = this.path + "/" + id;
 
-    this.http.get<Order>(path).subscribe((data) => order = data);
-
-    return order;
+    return this.http.get<Order>(path);
   }
 
-  public update(order: Order): Order {
-    let updatedOrder: Order;
-
-    this.http.put<Order>(this.path, order).subscribe((data) => updatedOrder = data);
-
-    return updatedOrder;
+  public update(order: Order): Observable<Order> {
+    return this.http.put<Order>(this.path, order);
   }
 
-  public getByUserId(userId: number): Order[] {
-    let userOrders: Order[];
-
+  public getByUserId(userId: number): Observable<Order[]> {
     let path = this.path + "/byUser/" + userId;
 
-    this.http.get<Order[]>(path).subscribe((data) => userOrders = data);
-
-    return userOrders;
+    return this.http.get<Order[]>(path);
   }
 
-  public getNotOrdered(): Order {
-    let notOrderedOrder: Order;
-
+  public getNotOrdered(): Observable<Order> {
     let path = this.path + 'notOrdered';
 
-    this.http.get<Order>(path).subscribe((data) => notOrderedOrder = data);
-
-    return notOrderedOrder;
+    return this.http.get<Order>(path);
   }
 }
