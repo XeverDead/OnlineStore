@@ -15,6 +15,10 @@ import { OrderComponent } from './components/order/order.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   imports: [
@@ -25,7 +29,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatSelectModule,
     MatToolbarModule,
     MatFormFieldModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    MatInputModule
   ],
   declarations: [
     AppComponent,
