@@ -35,6 +35,10 @@
     <div>
       <img src="{{product.imagePath}}" />
     </div>
+
+    <div>
+      <button mat-button (onclick)="createOrUpdate()">Save</button>
+    </div>
   </div>
 
   <div *ngIf="!product">

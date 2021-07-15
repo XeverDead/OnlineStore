@@ -41,6 +41,10 @@
     <div>
       <a [routerLink]="['user/{{order.user.id}}']">{{order.user.username}}</a>
     </div>
+
+    <div>
+      <button mat-button (onclick)="update()">Save</button>
+    </div>
   </div>
 
   <div *ngIf="!order">

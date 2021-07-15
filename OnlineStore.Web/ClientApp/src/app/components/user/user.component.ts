@@ -27,16 +27,6 @@ export class UserComponent implements OnInit {
     this.userService.getById(id).subscribe(result => {
       this.user = result;
     })
-
-    this.user = {
-      id: 1,
-      username: 'lol',
-      firstName: 'kek',
-      lastName: 'lolov',
-      role: Role.user,
-      emails: ['a'],
-      phoneNumbers: ['a']
-    }
   }
 
   public create(): void {

@@ -10,6 +10,7 @@ import { UsersComponent } from './components/users/users.component';
 const routes: Routes = [
   { path: 'products', component: ProductsComponent },
   { path: 'product/:id', component: ProductComponent },
+  { path: 'new-product', component: ProductComponent },
   { path: 'users', component: UsersComponent },
   { path: 'user/:id', component: UserComponent },
   { path: 'orders', component: OrdersComponent },

@@ -1,6 +1,5 @@
 import { OrderState } from "./enums/orderState";
 import { Product } from "./product";
-import { User } from "./user";
 
 export interface Order {
   id: number;
@@ -11,7 +10,7 @@ export interface Order {
 
   address: string;
 
-  user: User;
+  userId: number;
 
   state: OrderState;
 }
