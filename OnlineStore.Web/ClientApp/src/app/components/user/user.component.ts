@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Role } from '../../models/enums/role';
 import { User } from '../../models/user';
@@ -43,5 +44,12 @@ export class UserComponent implements OnInit {
 
   public delete(): void {
     this.userService.delete(this.user.id).subscribe();
+  }
+
+  public getEmailControl(email: string): FormControl {
+    return new FormControl(email, [
+      Validators.required,
+      Validators.email
+    ]);
   }
 }

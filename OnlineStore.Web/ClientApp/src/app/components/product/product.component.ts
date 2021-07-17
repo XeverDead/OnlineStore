@@ -12,6 +12,7 @@ import { ProductService } from '../../services/product.service';
 export class ProductComponent implements OnInit {
 
   private id: number;
+
   public product: Product;
 
   constructor(
@@ -28,14 +29,7 @@ export class ProductComponent implements OnInit {
       });
     }
     else {
-      this.product = {
-        id: 0,
-        name: null,
-        price: 0,
-        category: null,
-        description: null,
-        imagePath: null
-      };
+      this.setDefaultProductValues();
     }
   }
 
@@ -66,5 +60,16 @@ export class ProductComponent implements OnInit {
 
   public addToCurrentUserOrder(): void {
     this.productService.addToCurrentUserOrder(this.product).subscribe();
+  }
+
+  private setDefaultProductValues() {
+    this.product = {
+      id: 0,
+      name: null,
+      price: 0,
+      category: null,
+      description: null,
+      imagePath: null
+    };
   }
 }
