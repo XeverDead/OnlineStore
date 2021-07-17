@@ -29,12 +29,12 @@
           <mat-option [value]="stateType.paid">Paid</mat-option>
         </mat-select>
       </mat-form-field>
-      <h2>{{order.state}}</h2>
     </div>
 
     <div>
       <div *ngFor="let product of order.products">
         <a [routerLink]="['product/{{product.id}}']">{{product.name}}</a>
+        <button mat-button (onclick)="removeProduct(product)">Remove</button>
       </div>
     </div>
 
