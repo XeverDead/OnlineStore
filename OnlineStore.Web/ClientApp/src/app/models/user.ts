@@ -1,4 +1,6 @@
 import { Role } from "./enums/role";
+import { EmailModel } from "./sub-models/email-model";
+import { PhoneNumberModel } from "./sub-models/phone-number-model";
 
 export interface User {
   id: number;
@@ -9,9 +11,9 @@ export interface User {
 
   lastName: string;
 
-  phoneNumbers: string[];
+  phoneNumbers: PhoneNumberModel[];
 
-  emails: string[];
+  emails: EmailModel[];
 
   role: Role;
 }

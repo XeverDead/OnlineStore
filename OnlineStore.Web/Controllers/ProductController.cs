@@ -22,7 +22,7 @@ namespace OnlineStore.Web.Controllers
         {
             var products = await _productService.GetAll();
 
-            return new ObjectResult(products);
+            return Ok(products);
         }
 
         [HttpGet("{id}")]
@@ -35,7 +35,7 @@ namespace OnlineStore.Web.Controllers
                 return NotFound();
             }
 
-            return new ObjectResult(product);
+            return Ok(product);
         }
 
         [HttpPost]

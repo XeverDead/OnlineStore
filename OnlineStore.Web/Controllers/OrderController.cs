@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
 using OnlineStore.Bll.Services.Interfaces;
 using OnlineStore.Common.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace OnlineStore.Web.Controllers
 {
@@ -21,9 +21,11 @@ namespace OnlineStore.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var prders = await _orderService.GetAll();
+            var orders = await _orderService.GetAll();
 
-            return new ObjectResult(prders);
+            var ordersData = ConvertToOrderData(orders);
+
+            return Ok(ordersData);
         }
 
         [HttpGet("{id}")]
@@ -36,7 +38,7 @@ namespace OnlineStore.Web.Controllers
                 return NotFound();
             }
 
-            return new ObjectResult(order);
+            return Ok(order);
         }
 
         [HttpPost]
@@ -78,7 +80,9 @@ namespace OnlineStore.Web.Controllers
         {
             var userOrders = await _orderService.GetByUserId(userId);
 
-            return Ok(userOrders);
+            var ordersData = ConvertToOrderData(userOrders);
+
+            return Ok(ordersData);
         }
 
         [HttpGet("notOrdered")]
@@ -90,6 +94,23 @@ namespace OnlineStore.Web.Controllers
             var notOrderedOrder = await _orderService.GetNotOrdered(userId);
 
             return Ok(notOrderedOrder);
+        }
+
+        private List<OrderData> ConvertToOrderData(IEnumerable<Order> orders)
+        {
+            var ordersData = new List<OrderData>();
+
+            foreach (var order in orders)
+            {
+                ordersData.Add(new OrderData
+                {
+                    Id = order.Id,
+                    UserId = order.UserId,
+                    State = order.State
+                });
+            }
+
+            return ordersData;
         }
     }
 }

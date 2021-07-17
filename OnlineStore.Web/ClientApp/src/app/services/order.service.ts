@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Order } from "../models/order";
+import { OrderData } from "../models/order-data";
 
 @Injectable()
 export class OrderService {
@@ -26,8 +27,8 @@ export class OrderService {
     return this.http.delete<void>(this.path, options);
   }
 
-  public getAll(): Observable<Order[]> {
-    return this.http.get<Order[]>(this.path);
+  public getAll(): Observable<OrderData[]> {
+    return this.http.get<OrderData[]>(this.path);
   }
 
   public getById(id: number): Observable<Order> {
@@ -40,10 +41,10 @@ export class OrderService {
     return this.http.put<Order>(this.path, order);
   }
 
-  public getByUserId(userId: number): Observable<Order[]> {
+  public getByUserId(userId: number): Observable<OrderData[]> {
     let path = this.path + "/byUser/" + userId;
 
-    return this.http.get<Order[]>(path);
+    return this.http.get<OrderData[]>(path);
   }
 
   public getNotOrdered(): Observable<Order> {

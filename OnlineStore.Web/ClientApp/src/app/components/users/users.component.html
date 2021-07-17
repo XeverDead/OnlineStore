@@ -3,13 +3,13 @@
     <h2>Users page</h2>
   </div>
 
-  <div *ngIf="users && users.length > 0">
-    <div *ngFor="let user of users">
-      <a [routerLink]="['user/{{user.id}}']">{{user.username}}</a>
+  <div *ngIf="usersData && usersData.length > 0">
+    <div *ngFor="let userData of usersData">
+      <a [routerLink]="['user/{{userData.id}}']">{{userData.username}}</a>
     </div>
   </div>
 
-  <div *ngIf="!users || users.length === 0">
+  <div *ngIf="!usersData || usersData.length === 0">
     <h4>No users were found</h4>
   </div>
 </div>

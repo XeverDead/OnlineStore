@@ -29,7 +29,7 @@
       <div *ngFor="let phoneNumber of user.phoneNumbers">
         <mat-form-field appearance="fill">
           <mat-label>Phone number</mat-label>
-          <input matInput [value]="phoneNumber" required pattern="^\+\d{8,15}$" />
+          <input matInput [value]="phoneNumber.phoneNumber" required pattern="^\+\d{8,15}$" />
         </mat-form-field>
       </div>
     </div>
@@ -38,7 +38,7 @@
       <div *ngFor="let email of user.emails">
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input matInput [value]="email" [formControl]="getEmailControl(email)" />
+          <input matInput [value]="email.email" [formControl]="getEmailControl(email)" />
         </mat-form-field>
       </div>
     </div>

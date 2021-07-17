@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Order } from '../../models/order';
+import { OrderData } from '../../models/order-data';
 import { OrderService } from '../../services/order.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class OrdersComponent implements OnInit {
 
   public userId: number;
 
-  public orders: Order[];
+  public ordersData: OrderData[];
 
   constructor(
     private readonly orderService: OrderService
@@ -20,13 +20,13 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.orderService.getAll().subscribe(result => {
-      this.orders = result;
+      this.ordersData = result;
     });
   }
 
   public getByUserId(): void {
     this.orderService.getByUserId(this.userId).subscribe(result => {
-      this.orders = result;
+      this.ordersData = result;
     });
   }
 }

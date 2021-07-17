@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { User } from "../models/user";
+import { UserData } from "../models/user-data";
 
 @Injectable()
 export class UserService {
@@ -27,8 +28,8 @@ export class UserService {
     return this.http.delete<void>(this.path, options);
   }
 
-  public getAll(): Observable<User[]> {
-    return this.http.get<User[]>(this.path);
+  public getAll(): Observable<UserData[]> {
+    return this.http.get<UserData[]>(this.path);
   }
 
   public getById(id: number): Observable<User> {
@@ -41,9 +42,9 @@ export class UserService {
     return this.http.put<User>(this.path, user);
   }
 
-  public getByUsername(username: string): Observable<User[]> {
+  public getByUsername(username: string): Observable<UserData[]> {
     let path: string = this.path + '/byUsername/' + username;
 
-    return this.http.get<User[]>(path);
+    return this.http.get<UserData[]>(path);
   }
 }

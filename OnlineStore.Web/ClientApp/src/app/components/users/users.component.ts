@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../models/user';
+import { UserData } from '../../models/user-data';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { UserService } from '../../services/user.service';
 })
 export class UsersComponent implements OnInit {
 
-  public users: User[];
+  public usersData: UserData[];
 
   constructor(
     private readonly userService: UserService
@@ -18,13 +18,13 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getAll().subscribe(result => {
-      this.users = result;
+      this.usersData = result;
     });
   }
 
   public getByUsername(username: string): void {
     this.userService.getByUsername(username).subscribe(result => {
-      this.users = result;
+      this.usersData = result;
     });
   }
 }
