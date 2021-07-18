@@ -3,7 +3,7 @@
     <h2>Orders page</h2>
   </div>
 
-  <div *ngIf="ordersData && orders.lengthData > 0">
+  <div *ngIf="ordersData && ordersData.length > 0">
     <div>
       <div *ngFor="let orderData of ordersData">
         <a [routerLink]="['order/{{orderData.id}}']">{{orderData.name}}</a>

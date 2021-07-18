@@ -1,4 +1,4 @@
-import { OrderState } from "./enums/orderState";
+import { OrderState } from "./enums/order-state";
 import { Product } from "./product";
 
 export interface Order {

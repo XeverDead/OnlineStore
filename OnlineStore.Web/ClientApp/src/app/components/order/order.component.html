@@ -5,7 +5,7 @@
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Date</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="order.date">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="order.date" required>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -14,7 +14,7 @@
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Address</mat-label>
-        <input matInput [(ngModel)]="order.address" />
+        <input matInput [(ngModel)]="order.address" required />
       </mat-form-field>
     </div>
 
@@ -34,7 +34,7 @@
     <div>
       <div *ngFor="let product of order.products">
         <a [routerLink]="['product/{{product.id}}']">{{product.name}}</a>
-        <button mat-button (onclick)="removeProduct(product)">Remove</button>
+        <button mat-button (click)="removeProduct(product)">Remove</button>
       </div>
     </div>
 
@@ -43,7 +43,7 @@
     </div>
 
     <div>
-      <button mat-button (onclick)="update()">Save</button>
+      <button mat-button (click)="update()">Save</button>
     </div>
   </div>
 

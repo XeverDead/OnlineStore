@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PriceComparison } from '../../models/enums/priceComparison';
-import { SearchType } from '../../models/enums/searchType';
+import { FormControl, Validators } from '@angular/forms';
+import { PriceComparison } from '../../models/enums/price-comparison';
+import { SearchType } from '../../models/enums/search-type';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
 
@@ -15,6 +16,9 @@ export class ProductsComponent implements OnInit {
   public searchType = SearchType;
   public priceComparisonType = PriceComparison
 
+  public query: number | string;
+  public chosenPriceComparison: PriceComparison;
+
   public chosenSearchType: SearchType;
 
   public products: Product[];
@@ -26,24 +30,30 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getAll().subscribe(result => {
       this.products = result;
+
+      this.chosenPriceComparison = PriceComparison.lessOrEqual;
     });
   }
 
-  public getByName(name: string): void {
-    this.productService.getByName(name).subscribe(result => {
+  public getByName(): void {
+    this.productService.getByName(this.query.toString()).subscribe(result => {
       this.products = result;
     });
   }
 
-  public getByCategory(category: string): void {
-    this.productService.getByCategory(category).subscribe(result => {
+  public getByCategory(): void {
+    this.productService.getByCategory(this.query.toString()).subscribe(result => {
       this.products = result;
     });
   }
 
-  public getByPrice(price: number, priceComparison: PriceComparison): void {
-    this.productService.getByPrice(price, priceComparison).subscribe(result => {
+  public getByPrice(): void {
+    this.productService.getByPrice(<number>this.query, this.chosenPriceComparison).subscribe(result => {
       this.products = result;
     });
+  }
+
+  public clearQueryValue(): void {
+    this.query = null;
   }
 }

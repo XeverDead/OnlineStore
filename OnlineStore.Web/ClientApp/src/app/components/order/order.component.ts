@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { OrderState } from '../../models/enums/orderState';
+import { OrderState } from '../../models/enums/order-state';
 import { Order } from '../../models/order';
 import { Product } from '../../models/product';
 import { OrderService } from '../../services/order.service';
