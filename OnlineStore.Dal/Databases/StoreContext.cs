@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OnlineStore.Common.Enums;
 using OnlineStore.Common.Models;
 using OnlineStore.Common.Models.SubModels;
 using System.Collections.Generic;
@@ -32,6 +33,38 @@ namespace OnlineStore.Dal.Databases
                     entity => entity.HasOne<Product>().WithMany().HasForeignKey("ProductId"),
                     entity => entity.HasOne<Order>().WithMany().HasForeignKey("OrderId"),
                     entity => entity.ToTable("OrderProduct"));
+
+            builder
+                .Entity<User>()
+                .HasData(
+                new User
+                {
+                    Id = 1,
+                    FirstName = "Firstname",
+                    LastName = "Lastnamovich",
+                    Role = Role.Admin,
+                    Username = "Somebody someone"
+                });
+
+            builder
+                .Entity<EmailModel>()
+                .HasData(
+                new EmailModel
+                {
+                    Id = 1,
+                    Email = "firstname@mylo.lol",
+                    UserId = 1
+                });
+
+            builder
+                .Entity<PhoneNumberModel>()
+                .HasData(
+                new PhoneNumberModel
+                {
+                    Id = 1,
+                    PhoneNumber = "+111111111",
+                    UserId = 1
+                });
         }
     }
 }

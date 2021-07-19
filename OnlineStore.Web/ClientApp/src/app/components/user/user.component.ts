@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let id: number = this.url.snapshot.params.id;
+    let id = this.url.snapshot.params.id;
 
     this.userService.getById(id).subscribe(result => {
       this.user = result;
@@ -51,5 +51,29 @@ export class UserComponent implements OnInit {
       Validators.required,
       Validators.email
     ]);
+  }
+
+  public addEmail(): void {
+    this.user.emails.push({
+      id: 0,
+      email: null,
+      userId: this.user.id
+    });
+  }
+
+  public addPhoneNumber(): void {
+    this.user.phoneNumbers.push({
+      id: 0,
+      phoneNumber: null,
+      userId: this.user.id
+    });
+  }
+
+  public removeEmail(): void {
+
+  }
+
+  public removePhoneNumber(): void {
+
   }
 }

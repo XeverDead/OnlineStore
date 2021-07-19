@@ -7,37 +7,37 @@
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
-        <input matInput [(ngModel)]="product.name" required />
+        <input matInput [(ngModel)]="product.name" #name="ngModel" required />
       </mat-form-field>
     </div>
 
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Price</mat-label>
-        <input matInput type="number" [(ngModel)]="product.price" required min="0" />
+        <input matInput type="number" [(ngModel)]="product.price" #price="ngModel" required min="0" />
       </mat-form-field>
     </div>
 
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Category</mat-label>
-        <input matInput [(ngModel)]="product.category" required />
+        <input matInput [(ngModel)]="product.category" #category="ngModel" required />
       </mat-form-field>
     </div>
 
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Description</mat-label>
-        <textarea matInput [(ngModel)]="product.description" required></textarea>
+        <textarea matInput [(ngModel)]="product.description"></textarea>
       </mat-form-field>
     </div>
 
     <div>
-      <img src="{{product.imagePath}}" />
+      <button mat-button [disabled]="name.invalid || price.invalid || category.invalid" (click)="createOrUpdate()">Save</button>
     </div>
 
-    <div>
-      <button mat-button (click)="createOrUpdate()">Save</button>
+    <div *ngIf="id">
+      <button mat-button [disabled]="name.invalid || price.invalid || category.invalid" (click)="order()">Order</button>
     </div>
   </div>
 

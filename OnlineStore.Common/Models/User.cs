@@ -1,6 +1,7 @@
 ﻿using OnlineStore.Common.Enums;
 using OnlineStore.Common.Models.SubModels;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace OnlineStore.Common.Models
 {
@@ -8,10 +9,13 @@ namespace OnlineStore.Common.Models
     {
         public int Id { get; set; }
 
+        [Required]
         public string FirstName { get; set; }
 
+        [Required]
         public string LastName { get; set; }
 
+        [Required]
         public string Username { get; set; }
 
         public Role Role { get; set; }

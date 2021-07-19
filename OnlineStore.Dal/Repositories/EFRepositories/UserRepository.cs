@@ -35,7 +35,11 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
 
         public async Task<IEnumerable<User>> GetAll()
         {
-            var users = await _dbContext.Users.AsNoTracking().ToListAsync();
+            var users = await _dbContext.Users.
+                AsNoTracking()
+                .Include(user => user.Emails)
+                .Include(user => user.PhoneNumbers)
+                .ToListAsync();
 
             return users;
         }
@@ -44,6 +48,8 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
         {
             var user = await _dbContext.Users
                 .AsNoTracking()
+                .Include(user => user.Emails)
+                .Include(user => user.PhoneNumbers)
                 .FirstOrDefaultAsync(user => user.Id == id);
 
             return user;
@@ -57,11 +63,13 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
             return userEntry.Entity;
         }
 
-        public async Task<IEnumerable<User>> GetByUername(string username)
+        public async Task<IEnumerable<User>> GetByUsername(string username)
         {
             var users = await _dbContext.Users
                 .AsNoTracking()
                 .Where(user => user.Username.Contains(username))
+                .Include(user => user.Emails)
+                .Include(user => user.PhoneNumbers)
                 .ToListAsync();
 
             return users;

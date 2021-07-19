@@ -6,6 +6,6 @@ namespace OnlineStore.Dal.Repositories.Interfaces
 {
     public interface IUserRepository : IRepository<User>
     {
-        public Task<IEnumerable<User>> GetByUername(string username);
+        public Task<IEnumerable<User>> GetByUsername(string username);
     }
 }

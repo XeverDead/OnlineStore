@@ -4,7 +4,7 @@ import { Product } from "./product";
 export interface Order {
   id: number;
 
-  date: Date;
+  date: string;
 
   products: Product[];
 

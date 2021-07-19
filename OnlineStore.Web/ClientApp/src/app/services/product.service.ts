@@ -6,7 +6,7 @@ import { Product } from "../models/product";
 
 @Injectable()
 export class ProductService {
-  private readonly path: string = 'api/products';
+  private readonly path: string = 'api/product';
 
   constructor(private readonly http: HttpClient) { }
 

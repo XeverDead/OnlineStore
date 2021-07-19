@@ -6,7 +6,7 @@ import { UserData } from "../models/user-data";
 
 @Injectable()
 export class UserService {
-  private readonly path: string = 'api/users';
+  private readonly path: string = 'api/user';
 
   constructor(private readonly http: HttpClient) { }
 

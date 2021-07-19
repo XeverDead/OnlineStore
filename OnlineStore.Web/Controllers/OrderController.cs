@@ -89,7 +89,7 @@ namespace OnlineStore.Web.Controllers
         public async Task<IActionResult> GetNotOrdered()
         {
             //Переписать на получение из клеймсов
-            var userId = 0;
+            var userId = 1;
 
             var notOrderedOrder = await _orderService.GetNotOrdered(userId);
 

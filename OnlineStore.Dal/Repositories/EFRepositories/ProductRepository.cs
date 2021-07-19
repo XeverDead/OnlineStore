@@ -91,11 +91,18 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
                 notOrderedOrder = new Order
                 {
                     UserId = userId,
+                    Address = "(ne)null",
+                    Date = DateTime.Today,
                     State = OrderState.NotOrdered
                 };
 
                 notOrderedOrder = _dbContext.Orders.Add(notOrderedOrder).Entity;
                 await _dbContext.SaveChangesAsync();
+            }
+
+            if (notOrderedOrder.Products == null)
+            {
+                notOrderedOrder.Products = new List<Product>();
             }
 
             notOrderedOrder.Products.Add(product);

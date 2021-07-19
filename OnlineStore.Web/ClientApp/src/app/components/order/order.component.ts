@@ -23,7 +23,7 @@ export class OrderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let id: number = this.url.snapshot.params.id;
+    let id = this.url.snapshot.params.id;
 
     this.orderService.getById(id).subscribe(result => {
       this.order = result;

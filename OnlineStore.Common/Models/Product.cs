@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace OnlineStore.Common.Models
 {
@@ -6,10 +7,13 @@ namespace OnlineStore.Common.Models
     {
         public int Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
-        public int Price { get; set; }
+        [Required]
+        public double Price { get; set; }
 
+        [Required]
         public string Category { get; set; }
 
         public string Description { get; set; }

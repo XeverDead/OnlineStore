@@ -11,7 +11,7 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductComponent implements OnInit {
 
-  private id: number;
+  public id: number;
 
   public product: Product;
 
@@ -59,6 +59,10 @@ export class ProductComponent implements OnInit {
   }
 
   public addToCurrentUserOrder(): void {
+    this.productService.addToCurrentUserOrder(this.product).subscribe();
+  }
+
+  public order(): void {
     this.productService.addToCurrentUserOrder(this.product).subscribe();
   }
 

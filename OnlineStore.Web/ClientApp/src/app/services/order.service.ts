@@ -6,7 +6,7 @@ import { OrderData } from "../models/order-data";
 
 @Injectable()
 export class OrderService {
-  private readonly path: string = 'api/orders';
+  private readonly path: string = 'api/order';
 
   constructor(private readonly http: HttpClient) { }
 

@@ -100,7 +100,7 @@ namespace OnlineStore.Web.Controllers
         public async Task AddToCurrentUserOrder([FromBody]Product product)
         {
             // Заменить на получение из клеймсов
-            var userId = 0;
+            var userId = 1;
 
             await _productService.AddToCurrentOrder(userId, product);
         }

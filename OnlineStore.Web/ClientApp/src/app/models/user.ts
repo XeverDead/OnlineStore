@@ -5,15 +5,15 @@ import { PhoneNumberModel } from "./sub-models/phone-number-model";
 export interface User {
   id: number;
 
-  username: string;
-
   firstName: string;
 
   lastName: string;
 
+  username: string;
+
+  role: Role;
+
   phoneNumbers: PhoneNumberModel[];
 
   emails: EmailModel[];
-
-  role: Role;
 }

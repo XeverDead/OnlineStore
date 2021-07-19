@@ -5,7 +5,7 @@
 
   <div *ngIf="usersData && usersData.length > 0">
     <div *ngFor="let userData of usersData">
-      <a [routerLink]="['user/{{userData.id}}']">{{userData.username}}</a>
+      <a [routerLink]="['/user', userData.id]">{{userData.username}}</a>
     </div>
   </div>
 

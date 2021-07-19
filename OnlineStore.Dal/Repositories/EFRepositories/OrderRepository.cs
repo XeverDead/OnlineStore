@@ -45,6 +45,7 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
         {
             var order = await _dbContext.Orders
                 .AsNoTracking()
+                .Include(order => order.User)
                 .FirstOrDefaultAsync(order => order.Id == id);
 
             return order;
@@ -63,6 +64,7 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
             var orders = await _dbContext.Orders
                 .AsNoTracking()
                 .Where(order => order.User.Id == userId)
+                .Include(order => order.User)
                 .ToListAsync();
 
             return orders;
@@ -72,6 +74,7 @@ namespace OnlineStore.Dal.Repositories.EFRepositories
         {
             var notOrderedOrder = await _dbContext.Orders
                 .AsNoTracking()
+                .Include(order => order.User)
                 .FirstOrDefaultAsync(order => (order.UserId == userId)
                 && (order.State == OrderState.NotOrdered));
 
