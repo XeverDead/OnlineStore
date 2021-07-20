@@ -1,0 +1,70 @@
+<div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Search type</mat-label>
+      <mat-select [(ngModel)]="chosenSearchType" (selectionChange)="clearQueryValue()">
+        <mat-option [value]="searchType.byName">By name</mat-option>
+        <mat-option [value]="searchType.byCategory">By category</mat-option>
+        <mat-option [value]="searchType.byPrice">By price</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <div [ngSwitch]="chosenSearchType">
+      <div *ngSwitchCase="searchType.byName">
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="query"  />
+          </mat-form-field>
+        </div>
+
+        <div>
+          <button mat-button (click)="getByName()">Search</button>
+        </div>
+      </div>
+      <div *ngSwitchCase="searchType.byCategory">
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Category</mat-label>
+            <input matInput required [(ngModel)]="query" />
+          </mat-form-field>
+        </div>
+
+        <div>
+          <button mat-button [disabled]="!query" (click)="getByCategory()">Search</button>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="searchType.byPrice">
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Price</mat-label>
+            <input matInput type="number" [(ngModel)]="query" required min="0" #price="ngModel" />
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Comparison</mat-label>
+            <mat-select [(ngModel)]="chosenPriceComparison" required #comparison="ngModel">
+              <mat-option [value]="priceComparisonType.lessOrEqual">Less or equal</mat-option>
+              <mat-option [value]="priceComparisonType.greaterOrEqual">Greater or equal</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <button mat-button [disabled]="price.invalid || comparison.invalid" (click)="getByPrice()">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="products">
+    <div *ngFor="let product of products">
+      <a [routerLink]="['/product/',product.id]">{{product.name}}</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div>
+  <div>
+    <h2>Orders page</h2>
+  </div>
+
+  <div *ngIf="ordersData && ordersData.length > 0">
+    <div>
+      <div *ngFor="let orderData of ordersData">
+        <a [routerLink]="['/order', orderData.id]">{{orderData.id}}</a>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!ordersData || ordersData.length === 0">
+    <h4>No orders were found</h4>
+  </div>
+</div>
